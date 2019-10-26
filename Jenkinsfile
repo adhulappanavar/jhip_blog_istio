@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage ('Checkout'){
             steps {
-                sh 'git 'https://github.com/adhulappanavar/jhip_blog_istio'
+                sh 'git https://github.com/adhulappanavar/jhip_blog_istio'
             }
         }
         stage('Test') {
