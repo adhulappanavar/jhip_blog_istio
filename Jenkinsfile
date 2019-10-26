@@ -5,7 +5,8 @@ node{
     }
     
     stage('Node Version Check'){
-        node -v
+        def nodejsHome = tool name: 'nodejs1301', type: 'nodejs'
+        sh "${nodejsHome}/bin/node -v"
     }
 
     stage('Compile-Package'){
