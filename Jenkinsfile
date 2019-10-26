@@ -4,7 +4,9 @@ pipeline {
     stages {
         
         stage('SCM Checkout'){
-            git 'https://github.com/adhulappanavar/jhip_blog_istio'
+            steps {
+                git 'https://github.com/adhulappanavar/jhip_blog_istio'
+            }
         }
         
         
