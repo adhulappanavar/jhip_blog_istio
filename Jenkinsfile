@@ -4,8 +4,10 @@ node{
         git 'https://github.com/adhulappanavar/jhip_blog_istio'
     }
 
-    stage('Compile-Package'){
-        def mvnHome = tool name: 'maven3', type: 'maven'
-        sh "${mvnHome}/bin/mvn package"
-    }
+   stage('Compile-Package'){
+       steps {
+           withMaven(maven : 'maven3') {
+               sh 'mvn clean compile'
+           }
+       }
 }
