@@ -1,32 +1,11 @@
-pipeline {
-    agent any
+node{
 
-    stages {
-        
-        stage('SCM Checkout'){
-            steps {
-                git 'https://github.com/adhulappanavar/jhip_blog_istio'
-            }
-        }
-        
-        
-        stage ('Compile Stage') {
+    stage('SCM Checkout'){
+        git 'https://github.com/adhulappanavar/jhip_blog_istio'
+    }
 
-            steps {
-                withMaven(maven : 'maven3') {
-                    sh 'mvn clean compile'
-                }
-            }
-        }
-
-        stage ('Testing Stage') {
-
-            steps {
-                withMaven(maven : 'maven3') {
-                    sh 'mvn test'
-                }
-            }
-        }
-
+    stage('Compile-Package'){
+        def mvnHome = tool name: 'maven3', type: 'maven'
+        sh "${mvnHome}/bin/mvn package"
     }
 }
