@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'jhipster/jhispter:v6.4.1' }
+        docker { image 'jhipster/jhipster:v6.4.1' }
     }
     stages {
         stage ('Checkout'){
