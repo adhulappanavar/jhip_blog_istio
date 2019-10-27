@@ -3,9 +3,9 @@ pipeline {
         docker { image 'jhipster/jhipster:v6.4.1' }
     }
     stages {
-        stage ('Checkout'){
+        stage ('Genrate Microservices'){
             steps {
-                sh 'git https://github.com/adhulappanavar/jhip_blog_istio'
+                sh 'jhipster import-jdl microservices-blog-store-istio.jh'
             }
         }
         stage('Test') {
