@@ -4,7 +4,7 @@ pipeline {
         
         stage('Code-Generation') {
             agent {
-                docker { image 'jhipster/jhipster:latest' }
+                docker { image 'docker pull jhipster/jhipster:v6.4.0' }
             }
             steps {
                 sh 'jhipster -v'
