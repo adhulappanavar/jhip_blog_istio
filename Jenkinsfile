@@ -4,7 +4,7 @@ pipeline {
         stage('scm-checkout') {
             
             steps {
-                git 'https://github.com/adhulappanavar/jhip_blog_istio'
+                sh 'git clone https://github.com/adhulappanavar/jhip_blog_istio'
                
             }
         }
