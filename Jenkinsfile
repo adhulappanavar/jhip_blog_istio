@@ -1,13 +1,6 @@
 pipeline {
     agent none
     stages {
-        stage('scm-checkout') {
-            
-            steps {
-                sh 'git clone https://github.com/adhulappanavar/jhip_blog_istio'
-               
-            }
-        }
         
         stage('Code-Generation') {
             agent {
