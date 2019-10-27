@@ -1,14 +1,18 @@
 pipeline {
-    agent {
-        docker { image 'jhipster/jhipster:v6.4.1' }
-    }
+    agent none
     stages {
-        stage ('Genrate Microservices'){
+        stage('Back-end') {
+            agent {
+                docker { image 'maven:3-alpine' }
+            }
             steps {
-                sh 'jhipster import-jdl microservices-blog-store-istio.jh'
+                sh 'mvn --version'
             }
         }
-        stage('Test') {
+        stage('Front-end') {
+            agent {
+                docker { image 'node:7-alpine' }
+            }
             steps {
                 sh 'node --version'
             }
