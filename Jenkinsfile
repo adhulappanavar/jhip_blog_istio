@@ -1,6 +1,14 @@
 pipeline {
     agent none
     stages {
+        tage('Checkout-SCM') {
+            
+            steps {
+                checkout scm
+            }
+        }
+        
+        
         
         stage('Code-Generation') {
             agent {
