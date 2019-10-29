@@ -1,7 +1,7 @@
 pipeline {
     agent none
     stages {
-        tage('Checkout-SCM') {
+        stage('Checkout-SCM') {
             
             steps {
                 checkout scm
