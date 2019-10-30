@@ -12,13 +12,10 @@ node {
 
        
         stage('install tools') {
-            sh "pwd"
-            sh "ls -la"
-            sh "cd store"
-            sh "pwd"
-            sh "ls -la"
-            sh "cat mvmw"
-            sh "./mvnw com.github.eirslett:frontend-maven-plugin:install-node-and-npm -DnodeVersion=v10.16.0 -DnpmVersion=6.9.0"
+            dir("store") {
+                sh "pwd"
+                sh "./mvnw com.github.eirslett:frontend-maven-plugin:install-node-and-npm -DnodeVersion=v10.16.0 -DnpmVersion=6.9.0"
+            }
         }
 
         stage('npm install') {
