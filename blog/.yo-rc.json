@@ -1,0 +1,46 @@
+{
+  "generator-jhipster": {
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "enableHibernateCache": true,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": true,
+    "jhiPrefix": "jhi",
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "messageBroker": false,
+    "nativeLanguage": "en",
+    "packageName": "com.sapient.developer.blog",
+    "packageFolder": "com/sapient/developer/blog",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "elasticsearch",
+    "serviceDiscoveryType": false,
+    "skipClient": true,
+    "testFrameworks": [
+      "gatling"
+    ],
+    "websocket": false,
+    "baseName": "blog",
+    "applicationType": "microservice",
+    "authenticationType": "jwt",
+    "serverPort": "8081",
+    "jhipsterVersion": "6.3.1",
+    "buildTool": "maven",
+    "skipUserManagement": true,
+    "clientPackageManager": "npm",
+    "cacheProvider": "hazelcast",
+    "jwtSecretKey": "Mjg3YmI1YjFiMDc0YjBkMjA4MzZjNGY2ODAyMTJmNzI0YzcyMDU1YzRkNmIwMGFlYjI2NzE5Y2NiOTQ4YWUxODIyZDk5M2U1NzdhYzYzZjIwMmEyZjc5YjQ3N2I1NmIxODEwOTdiZjgwNDhiZWY3NzI5MmE3NmQyMjJmM2YwYzA=",
+    "embeddableLaunchScript": false,
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "blueprints": []
+  },
+  "entities": [
+    "Blog",
+    "Post",
+    "Tag"
+  ]
+}
