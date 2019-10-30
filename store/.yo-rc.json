@@ -1,0 +1,44 @@
+{
+  "generator-jhipster": {
+    "databaseType": "sql",
+    "devDatabaseType": "h2Disk",
+    "enableHibernateCache": false,
+    "enableSwaggerCodegen": false,
+    "enableTranslation": true,
+    "jhiPrefix": "jhi",
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "messageBroker": false,
+    "nativeLanguage": "en",
+    "packageName": "com.sapient.developer.store",
+    "packageFolder": "com/sapient/developer/store",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "elasticsearch",
+    "serviceDiscoveryType": false,
+    "skipClient": true,
+    "testFrameworks": [
+      "gatling"
+    ],
+    "websocket": false,
+    "baseName": "store",
+    "applicationType": "microservice",
+    "authenticationType": "jwt",
+    "serverPort": "8082",
+    "jhipsterVersion": "6.3.1",
+    "buildTool": "maven",
+    "skipUserManagement": true,
+    "clientPackageManager": "npm",
+    "cacheProvider": "hazelcast",
+    "jwtSecretKey": "ZTI4NDg5OTU2ZDM4OWZiY2QwNDdkZmE2NDIwN2IyY2IxNzNiMzZhMmMwZDhhNzQyZTU2ZDVlYjcwOGU0MzdmYjczNzg0NTQ0MDBlOTRjOTc3NGI2ZGZlNWVlMThjYTUxM2U0MTk0MjAxMDk5MTc5ZDVmZDg5NjljYmM4NDNhMzc=",
+    "embeddableLaunchScript": false,
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "blueprints": []
+  },
+  "entities": [
+    "Product"
+  ]
+}
