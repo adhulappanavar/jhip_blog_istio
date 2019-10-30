@@ -1,38 +1,56 @@
-pipeline {
-    agent none
-    stages {
-        stage('Checkout-SCM') {
-            
-            steps {
-                checkout scm
+#!/usr/bin/env groovy
+
+node {
+    stage('checkout') {
+        checkout scm
+    }
+
+    docker.image('jhipster/jhipster').inside('-u jhipster -e MAVEN_OPTS="-Duser.home=./"') {
+        stage('check java') {
+            sh "java -version"
+        }
+
+        stage('clean') {
+            sh "chmod +x mvnw"
+            sh "./mvnw clean"
+        }
+
+        stage('install tools') {
+            sh "jhipster import-jdl microservices-blog-store-istio.jh"
+            sh "./mvnw com.github.eirslett:frontend-maven-plugin:install-node-and-npm -DnodeVersion=v10.16.0 -DnpmVersion=6.9.0"
+        }
+
+        stage('npm install') {
+            sh "./mvnw com.github.eirslett:frontend-maven-plugin:npm"
+        }
+
+        stage('backend tests') {
+            try {
+                sh "./mvnw verify"
+            } catch(err) {
+                throw err
+            } finally {
+                junit '**/target/test-results/**/TEST-*.xml'
             }
         }
-        
-        
-        
-        stage('Code-Generation') {
-            agent {
-                docker { image 'jhipster/jhipster:v6.4.0' }
-            }
-            steps {
-                sh 'jhipster -v'
-                sh 'jhipster import-jdl microservices-blog-store-istio.jh'
+
+        stage('frontend tests') {
+            try {
+                sh "./mvnw com.github.eirslett:frontend-maven-plugin:npm -Dfrontend.npm.arguments='run test'"
+            } catch(err) {
+                throw err
+            } finally {
+                junit '**/target/test-results/TESTS-*.xml'
             }
         }
-        stage('Back-end') {
-            agent {
-                docker { image 'maven:3-alpine' }
-            }
-            steps {
-                sh 'mvn --version'
-            }
+
+        stage('package and deploy') {
+            sh "./mvnw com.heroku.sdk:heroku-maven-plugin:2.0.5:deploy -DskipTests -Pprod -Dheroku.buildpacks=heroku/jvm -Dheroku.appName=jhipster"
+            archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
         }
-        stage('Front-end') {
-            agent {
-                docker { image 'node:7-alpine' }
-            }
-            steps {
-                sh 'node --version'
+        stage('quality analysis') {
+            withSonarQubeEnv('sonar') {
+                sh "./mvnw sonar:sonar"
             }
         }
     }
