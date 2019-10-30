@@ -11,15 +11,25 @@ node {
         }
 
        
-        stage('install tools') {
-            dir("${env.WORKSPACE}/store") {
+        stage('Compile Gateway') {
+            dir("gateway") {
+                sh "pwd"
+                sh "./mvnw com.github.eirslett:frontend-maven-plugin:install-node-and-npm -DnodeVersion=v10.16.0 -DnpmVersion=6.9.0"
+            }
+        }
+        
+        stage('Compile Store') {
+            dir("store") {
                 sh "pwd"
                 sh "./mvnw com.github.eirslett:frontend-maven-plugin:install-node-and-npm -DnodeVersion=v10.16.0 -DnpmVersion=6.9.0"
             }
         }
 
         stage('npm install') {
-            sh "./mvnw com.github.eirslett:frontend-maven-plugin:npm"
+            dir("gateway") {
+                sh "pwd"
+                sh "./mvnw com.github.eirslett:frontend-maven-plugin:npm"
+            }
         }
 
         stage('backend tests') {
