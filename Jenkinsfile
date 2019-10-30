@@ -12,7 +12,7 @@ node {
 
        
         stage('install tools') {
-            dir("store") {
+            dir("${env.WORKSPACE}/store") {
                 sh "pwd"
                 sh "./mvnw com.github.eirslett:frontend-maven-plugin:install-node-and-npm -DnodeVersion=v10.16.0 -DnpmVersion=6.9.0"
             }
